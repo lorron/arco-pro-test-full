@@ -67,7 +67,7 @@
             class="nav-btn"
             type="outline"
             :shape="'circle'"
-            @click="toggleTheme"
+            @click="handleToggleTheme"
           >
             <template #icon>
               <icon-moon-fill v-if="theme === 'dark'" />
@@ -102,6 +102,27 @@
             <message-box />
           </template>
         </a-popover>
+      </li>
+      <li>
+        <a-tooltip
+          :content="
+            isFullscreen
+              ? $t('settings.navbar.screen.toExit')
+              : $t('settings.navbar.screen.toFull')
+          "
+        >
+          <a-button
+            class="nav-btn"
+            type="outline"
+            :shape="'circle'"
+            @click="toggleFullScreen"
+          >
+            <template #icon>
+              <icon-fullscreen-exit v-if="isFullscreen" />
+              <icon-fullscreen v-else />
+            </template>
+          </a-button>
+        </a-tooltip>
       </li>
       <li>
         <a-tooltip :content="$t('settings.title')">
@@ -168,7 +189,7 @@
 <script lang="ts" setup>
   import { computed, ref, inject } from 'vue';
   import { Message } from '@arco-design/web-vue';
-  import { useDark, useToggle } from '@vueuse/core';
+  import { useDark, useToggle, useFullscreen } from '@vueuse/core';
   import { useAppStore, useUserStore } from '@/store';
   import { LOCALE_OPTIONS } from '@/locale';
   import useLocale from '@/hooks/locale';
@@ -179,6 +200,7 @@
   const userStore = useUserStore();
   const { logout } = useUser();
   const { changeLocale } = useLocale();
+  const { isFullscreen, toggle: toggleFullScreen } = useFullscreen();
   const locales = [...LOCALE_OPTIONS];
   const avatar = computed(() => {
     return userStore.avatar;
@@ -193,11 +215,14 @@
     valueLight: 'light',
     storageKey: 'arco-theme',
     onChanged(dark: boolean) {
-      // overridded default behavior
+      // overridden default behavior
       appStore.toggleTheme(dark);
     },
   });
   const toggleTheme = useToggle(isDark);
+  const handleToggleTheme = () => {
+    toggleTheme();
+  };
   const setVisible = () => {
     appStore.updateSettings({ globalSettings: true });
   };
@@ -248,9 +273,11 @@
     display: flex;
     padding-right: 20px;
     list-style: none;
+
     :deep(.locale-select) {
       border-radius: 20px;
     }
+
     li {
       display: flex;
       align-items: center;
@@ -261,16 +288,19 @@
       color: var(--color-text-1);
       text-decoration: none;
     }
+
     .nav-btn {
-      border-color: rgb(var(--gray-2));
       color: rgb(var(--gray-8));
       font-size: 16px;
+      border-color: rgb(var(--gray-2));
     }
+
     .trigger-btn,
     .ref-btn {
       position: absolute;
       bottom: 14px;
     }
+
     .trigger-btn {
       margin-left: 14px;
     }

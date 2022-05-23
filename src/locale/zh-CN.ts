@@ -2,7 +2,7 @@ import localeMessageBox from '@/components/message-box/locale/zh-CN';
 import localeLogin from '@/views/login/locale/zh-CN';
 
 import localeWorkplace from '@/views/dashboard/workplace/locale/zh-CN';
-
+/** simple */
 import localeMonitor from '@/views/dashboard/monitor/locale/zh-CN';
 
 import localeSearchTable from '@/views/list/search-table/locale/zh-CN';
@@ -25,7 +25,7 @@ import locale500 from '@/views/exception/500/locale/zh-CN';
 
 import localeUserInfo from '@/views/user/info/locale/zh-CN';
 import localeUserSetting from '@/views/user/setting/locale/zh-CN';
-
+/** simple end */
 import localeSettings from './zh-CN/settings';
 
 export default {
@@ -46,7 +46,7 @@ export default {
   ...localeMessageBox,
   ...localeLogin,
   ...localeWorkplace,
-
+  /** simple */
   ...localeMonitor,
   ...localeSearchTable,
   ...localeCardList,
@@ -62,4 +62,5 @@ export default {
   ...locale500,
   ...localeUserInfo,
   ...localeUserSetting,
+  /** simple end */
 };

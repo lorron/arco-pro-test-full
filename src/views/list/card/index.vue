@@ -25,7 +25,7 @@
             </a-col>
             <a-input-search
               :placeholder="$t('cardList.searchInput.placeholder')"
-              style="width: 240px; position: absolute; top: 60px; right: 20px"
+              style="position: absolute; top: 60px; right: 20px; width: 240px"
             />
           </a-row>
         </a-card>
@@ -37,7 +37,7 @@
 <script lang="ts" setup>
   import QualityInspection from './components/quality-inspection.vue';
   import TheService from './components/the-service.vue';
-  import RulesPreset from './components/reules-preset.vue';
+  import RulesPreset from './components/rules-preset.vue';
 </script>
 
 <script lang="ts">
@@ -49,6 +49,7 @@
 <style scoped lang="less">
   .container {
     padding: 0 20px 20px 20px;
+
     :deep(.arco-list-content) {
       overflow-x: hidden;
     }
@@ -57,6 +58,7 @@
       font-size: 14px;
     }
   }
+
   :deep(.arco-list-col) {
     display: flex;
     flex-direction: row;
@@ -72,16 +74,20 @@
     margin: 0 0 12px 0;
     font-size: 14px;
   }
+
   :deep(.list-wrap) {
     // min-height: 140px;
     .list-row {
       align-items: stretch;
+
       .list-col {
         margin-bottom: 16px;
       }
     }
+
     :deep(.arco-space) {
       width: 100%;
+
       .arco-space-item {
         &:last-child {
           flex: 1;

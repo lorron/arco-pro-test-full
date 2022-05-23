@@ -53,7 +53,7 @@
   const submitForm = async () => {
     setLoading(true);
     try {
-      await submitChannelForm(submitModel.value); // The moack api default success
+      await submitChannelForm(submitModel.value); // The mock api default success
       step.value = 3;
       submitModel.value = {} as UnitChannelModel; // init
     } catch (err) {
@@ -97,12 +97,14 @@
   .container {
     padding: 0 20px 20px 20px;
   }
+
   .wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 64px 0;
     background-color: var(--color-bg-2);
+
     :deep(.arco-form) {
       .arco-form-item {
         &:last-child {

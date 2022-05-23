@@ -8,7 +8,7 @@
               v-for="(tag, index) in tagList"
               :key="tag.fullPath"
               class="arco-tag arco-tag-size-medium arco-tag-checked"
-              :class="{ 'link-actived': tag.fullPath === $route.fullPath }"
+              :class="{ 'link-activated': tag.fullPath === $route.fullPath }"
               @click="goto(tag)"
             >
               <span class="tag-link">
@@ -79,24 +79,28 @@
   .tab-bar-container {
     position: relative;
     background-color: var(--color-bg-2);
+
     .tab-bar-box {
       display: flex;
       padding: 0 0 0 20px;
       background-color: var(--color-bg-2);
       border-bottom: 1px solid var(--color-border);
+
       .tab-bar-scroll {
-        height: 32px;
         flex: 1;
+        height: 32px;
         overflow: hidden;
+
         .tags-wrap {
-          padding: 4px 0;
           height: 42px;
-          white-space: nowrap;
+          padding: 4px 0;
           overflow-x: auto;
+          white-space: nowrap;
 
           :deep(.arco-tag) {
             margin-right: 6px;
             cursor: pointer;
+
             &:first-child {
               .arco-tag-close-btn {
                 display: none;
@@ -117,18 +121,22 @@
     color: var(--color-text-2);
     text-decoration: none;
   }
-  .link-actived {
+
+  .link-activated {
     color: rgb(var(--link-6));
+
     .tag-link {
       color: rgb(var(--link-6));
     }
+
     & + .arco-tag-close-btn {
       color: rgb(var(--link-6));
     }
   }
+
   :deep(.arco-affix) {
     z-index: 90;
-    background-color: var(--color-bg-2);
     overflow-x: auto;
+    background-color: var(--color-bg-2);
   }
 </style>
